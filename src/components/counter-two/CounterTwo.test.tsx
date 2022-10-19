@@ -1,35 +1,35 @@
-import {render, screen} from '@testing-library/react'
-import user from '@testing-library/user-event'
+import { render, screen } from "@testing-library/react";
+import user from "@testing-library/user-event";
 
-import { CounterTwo } from './CounterTwo'
+import { CounterTwo } from "./CounterTwo";
 
-describe('Counter two', () => {
-    test('renders correctly', () => {
-        render(<CounterTwo  count={10}/>)
-        const headingElement = screen.getByRole('heading')
-        expect(headingElement).toBeInTheDocument()
+describe("Counter two", () => {
+  test("renders correctly", () => {
+    render(<CounterTwo count={10} />);
+    const headingElement = screen.getByRole("heading");
+    expect(headingElement).toBeInTheDocument();
 
-        const pElement = screen.getByText(/count:10/i)
-        expect(pElement).toBeInTheDocument()
-    })
+    const pElement = screen.getByText(/count:10/i);
+    expect(pElement).toBeInTheDocument();
+  });
 
-    test('handlers are called', async () => {
-        user.setup()
-        const incrementHandler = jest.fn()
-        const decrementHandler = jest.fn()
-        render(
-            <CounterTwo
-              count={0}
-              handleIncrement={incrementHandler}
-              handleDecrement={decrementHandler}
-            />
-          )
+  test("handlers are called", async () => {
+    user.setup();
+    const incrementHandler = jest.fn();
+    const decrementHandler = jest.fn();
+    render(
+      <CounterTwo
+        count={0}
+        handleIncrement={incrementHandler}
+        handleDecrement={decrementHandler}
+      />
+    );
 
-          const incrementButton = screen.getByRole('button', { name: 'Increment' })
-          const decrementButton = screen.getByRole('button', { name: 'Decrement' })
-          await user.click(incrementButton)
-          await user.click(decrementButton)
-          expect(incrementHandler).toHaveBeenCalledTimes(1)
-          expect(decrementHandler).toHaveBeenCalledTimes(1)
-    })
-})
+    const incrementButton = screen.getByRole("button", { name: "Increment" });
+    const decrementButton = screen.getByRole("button", { name: "Decrement" });
+    await user.click(incrementButton);
+    await user.click(decrementButton);
+    expect(incrementHandler).toHaveBeenCalledTimes(1);
+    expect(decrementHandler).toHaveBeenCalledTimes(1);
+  });
+});
