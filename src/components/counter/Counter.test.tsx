@@ -52,6 +52,7 @@ describe("Counter", () => {
     expect(headingElement).toHaveTextContent(/^10$/);
   });
 
+  // look at this again
   test("elements are focused in the right order", async () => {
     user.setup();
     render(<Counter />);
